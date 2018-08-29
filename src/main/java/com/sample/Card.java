@@ -20,6 +20,6 @@ public class Card {
     }
 
     public String getNotation() {
-        return "";
+        return this.rank + this.suit;
     }
 }

@@ -2,6 +2,8 @@ package com.sample;
 
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -9,53 +11,76 @@ import org.junit.jupiter.api.Test;
  */
 public class CardTest{
 
-    @Test
-    void スートにスペードが設定されていること(){
-        // setup
-        Card card = new Card("♠", "3");
+    @Nested
+    @DisplayName("スートとランク")
+    class SuitAndRank {
 
-        // execution
-        // なし
+        @Test
+        void スートにスペードが設定されていること() {
+            // setup
+            Card card = new Card("♠", "3");
 
-        // assertion
-        Assertions.assertEquals("♠", card.getSuit());
+            // execution
+            // なし
+
+            // assertion
+            Assertions.assertEquals("♠", card.getSuit());
+        }
+
+        @Test
+        void スートにハートが設定されていること() {
+            // setup
+            Card card = new Card("♡", "3");
+
+            // execution
+
+            // assertion
+            Assertions.assertEquals("♡", card.getSuit());
+
+        }
+
+        @Test
+        void ランクに3が設定されていること() {
+            // setup
+            Card card = new Card("♠", "3");
+
+            // assertion
+            Assertions.assertEquals("3", card.getRank());
+        }
+
+        @Test
+        void ランクにJが設定されていること() {
+            // setup
+            Card card = new Card("♠", "J");
+
+            // assertion
+            Assertions.assertEquals("J", card.getRank());
+
+        }
     }
-    @Test
-    void スートにハートが設定されていること(){
-        // setup
-        Card card = new Card("♡", "3");
+    
+    @Nested
+    @DisplayName("文字列表記")
+    class NotationTests {
+        @Test
+        void スペードの3から文字列表記を取得() {
+            // setup
+            Card card = new Card("♠", "3");
 
-        // execution
+            // assertion
+            Assertions.assertEquals("3♠", card.getNotation());
 
-        // assertion
-        Assertions.assertEquals("♡", card.getSuit());
+        }
 
-    }
-    @Test
-    void ランクに3が設定されていること(){
-        // setup
-        Card card = new Card("♠", "3");
+        @Test
+        void ハートのJから文字列表記を取得() {
+            // setup
+            Card card = new Card("♡", "J");
 
-        // assertion
-        Assertions.assertEquals("3", card.getRank());
-    }
-    @Test
-    void ランクにJが設定されていること(){
-        // setup
-        Card card = new Card("♠", "J");
+            // assertion
+            Assertions.assertEquals("J♡", card.getNotation());
 
-        // assertion
-        Assertions.assertEquals("J",card.getRank());
-
-    }
-    @Test
-    void スペードの3から文字列表記を取得(){
-        // setup
-        Card card = new Card("♠", "3");
-
-        // assetion
-        Assertions.assertEquals("3♠", card.getNotation());
-
+        }
     }
 
 }
