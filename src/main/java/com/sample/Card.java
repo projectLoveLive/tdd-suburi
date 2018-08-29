@@ -12,10 +12,14 @@ public class Card {
     }
 
     public String getRank() {
-        return "";
+        return rank;
     }
 
     public String getSuit() {
+        return suit;
+    }
+
+    public String getNotation() {
         return "";
     }
 }
